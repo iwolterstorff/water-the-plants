@@ -31,6 +31,8 @@ services:
     configs:
       - source: telegraf_config
         target: /etc/telegraf/telegraf.conf
+    environment:
+      - INFLUX_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
 
 configs:
   telegraf_config:
