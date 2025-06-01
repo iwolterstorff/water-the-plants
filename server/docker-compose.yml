@@ -6,7 +6,6 @@ services:
     container_name: mosquitto
     ports:
       - "1883:1883"
-      - "9001:9001"
 
   influxdb:
     image: influxdb:2.7-alpine
@@ -26,8 +25,9 @@ services:
   telegraf:
     image: telegraf:1.34-alpine
     container_name: telegraf
-    volumes:
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    configs:
+      - source: telegraf_config
+        target: /etc/telegraf/telegraf.conf
 
 configs:
   telegraf_config:
