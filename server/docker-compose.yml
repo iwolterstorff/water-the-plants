@@ -6,6 +6,9 @@ services:
     container_name: mosquitto
     ports:
       - "1883:1883"
+    configs:
+      - source: mosquitto_config
+        target: /mosquitto/config/mosquitto.conf
 
   influxdb:
     image: influxdb:2.7-alpine
@@ -31,6 +34,8 @@ services:
 configs:
   telegraf_config:
     file: ./telegraf.conf
+  mosquitto_config:
+    file: ./mosquitto.conf
 
 volumes:
   influx_data:
